@@ -7,8 +7,8 @@
     "step": {
       "user": {
         "data": {
-          "api_key": "WUnderground API Key",
-          "pws_id": "WUnderground Station Id"
+          "api_key": "API Key",
+          "pws_id": "Station Id"
         },
         "description": "Enter your Wunderground credentials.",
         "title": "Authentication"
