@@ -6,7 +6,7 @@ from homeassistant import config_entries, core, exceptions
 from homeassistant.core import callback
 from .const import _LOGGER, DATA_WU_CONFIG, DOMAIN
 
-class wundergroundCongfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+class wuCongfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Config flow for the Wunderground pws intergration"""
     VERSION = 1
     
@@ -26,28 +26,31 @@ class wundergroundCongfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             if DATA_WU_CONFIG in self.hass.data
             else ""
         )
+        stored_pws_id = (
+            self.hass.data[DATA_WU_CONFIG].get(CONF_PWS_ID)
+            if DATA_WU_CONFIG in self.hass.data
+            else ""
+        )
 
         if user_input is not None:
             # Use the user-supplied API key
-            self._ecobee = Wunderground(config={WU_API_KEY: user_input[CONF_API_KEY]})
-
-            if await self.hass.async_add_executor_job(self._ecobee.request_pin):
-                # We have a PIN; move to the next step of the flow.
-                return await self.async_step_authorize()
-            errors["base"] = "pin_request_failed"
+            self._wunderground = Wunderground(config={WU_API_KEY: user_input[CONF_API_KEY]})
+            self._wunderground = Wunderground(config={WU_PWS_ID: user_input[CONF_PWS_ID]})
+            
+            errors["base"] = "failed"
 
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
-                {vol.Required(CONF_API_KEY, default=stored_api_key): str}
+                {vol.Required(CONF_API_KEY, default=stored_api_key): str},
+                {vol.Required(CONF_PWS_ID, default=stored_pws_id): str}
             ),
             errors=errors,
         )
-
-    async def async_step_import(self, device_config):
-        """Import a configuration.yaml config, if any."""
-        try:
-            await validate_input(self.hass, device_config)
-        except AlreadyConfigured:
-            return self.async_abort(reason="already_configured")
+        config = {
+           CONF_API_KEY: self._wunderground.api_key,
+           CONF_PWS_ID: self._wunderground.pws_id,
+                }
+        return self.async_create_entry(title=DOMAIN, data=config)
+    
 
