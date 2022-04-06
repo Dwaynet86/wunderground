@@ -22,7 +22,7 @@ _LOGGER = logging.getLogger(__package__)
 DOMAIN = "wunderground"
 DATA_WU_CONFIG = "wunderground_config"
 
-CONF_INDEX = "index"
+CONF_PWS_ID = "Station ID"
 CONF_REFRESH_TOKEN = "refresh_token"
 
 PLATFORMS = [
