@@ -75,9 +75,9 @@ class WUndergroundData:
             self.units_of_measurement = (TEMP_FAHRENHEIT, LENGTH_INCHES, LENGTH_FEET, SPEED_MILES_PER_HOUR,
                                          PRESSURE_INHG, PRECIPITATION_INCHES_PER_HOUR, PERCENTAGE)
 
-    #def request_feature(self, feature):
+    def request_feature(self, feature):
         """Register feature to be fetched from WU API."""
-       # self._features.add(feature)
+        self._features.add(feature)
 
     def _build_url(self, baseurl):
         if baseurl is _RESOURCECURRENT:
@@ -121,9 +121,9 @@ class WUndergroundData:
         except (asyncio.TimeoutError, aiohttp.ClientError) as err:
             _LOGGER.error("Error fetching WUnderground data: %s", repr(err))
 
-"""async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    #Unload the config entry and platforms.
+async def async_unload_entry(hass: core.HomeAssistant, entry: config_entries.ConfigEntry) -> bool:
+    """Unload the config entry and platforms."""
     unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     if unload_ok:
         hass.data.pop(DOMAIN)
-    return unload_ok"""
+    return unload_ok
