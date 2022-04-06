@@ -21,9 +21,8 @@ _LOGGER = logging.getLogger(__package__)
 
 DOMAIN = "wunderground"
 DATA_WU_CONFIG = "wunderground_config"
-
+CONF_LANG = "lang"
 CONF_PWS_ID = "pws_id"
-CONF_REFRESH_TOKEN = "refresh_token"
 
 PLATFORMS = [
     Platform.BINARY_SENSOR,
