@@ -5,7 +5,7 @@ from typing import Any, Dict, Optional
 from homeassistant import config_entries, core, exceptions
 from homeassistant.core import callback
 from .const import _LOGGER, DATA_WU_CONFIG, DOMAIN, CONF_PWS_ID
-from homeassistant.const import CONF_API_KEY
+from homeassistant.const import CONF_API_KEY, CONF_NAME
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity_registry import (
     async_entries_for_config_entry,
@@ -16,7 +16,13 @@ import voluptuous as vol
 AUTH_SCHEMA = vol.Schema(
     {vol.Required(CONF_API_KEY): cv.string, vol.Required(CONF_PWS_ID): cv.string}
 )
-
+REPO_SCHEMA = vol.Schema(
+    {
+        vol.Required(CONF_API_KEY): cv.string,
+        vol.Optional(CONF_NAME): cv.string,
+        vol.Optional("add_another"): cv.boolean,
+    }
+)
 class wuConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Config flow for the Wunderground pws intergration"""
     VERSION = 1
