@@ -16,13 +16,7 @@ import voluptuous as vol
 AUTH_SCHEMA = vol.Schema(
     {vol.Required(CONF_API_KEY): cv.string, vol.Required(CONF_PWS_ID): cv.string}
 )
-REPO_SCHEMA = vol.Schema(
-    {
-        vol.Required(CONF_API_KEY): cv.string,
-        vol.Optional(CONF_NAME): cv.string,
-        vol.Optional("add_another"): cv.boolean,
-    }
-)
+
 class wuConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Config flow for the Wunderground pws intergration"""
     VERSION = 1
