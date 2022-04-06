@@ -1,5 +1,5 @@
 {
-    "name": "Wunderground PWS Intergration",
+    "name": "Wunderground PWS Integration",
     "render_readme": true,
     "domains": ["sensor", "weather"],
     "iot_class": "Local Push"
