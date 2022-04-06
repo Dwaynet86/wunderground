@@ -17,7 +17,8 @@ from homeassistant.const import (
     LENGTH_FEET, LENGTH_MILLIMETERS, LENGTH_METERS, SPEED_MILES_PER_HOUR, SPEED_KILOMETERS_PER_HOUR,
     PERCENTAGE, PRESSURE_INHG, PRESSURE_MBAR, PRECIPITATION_INCHES_PER_HOUR, PRECIPITATION_MILLIMETERS_PER_HOUR,
     ATTR_ATTRIBUTION)
-
+from  .const import (_LOGGER, _RESOURCECURRENT, _RESOURCEFORECAST,
+    DOMAIN)
 from homeassistant.exceptions import PlatformNotReady
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
