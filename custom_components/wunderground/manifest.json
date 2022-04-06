@@ -1,0 +1,11 @@
+{
+  "domain": "wunderground",
+  "name": "Wunderground PWS Intergration",
+  "version": "2022.4.5",
+  "config_flow": true,
+  "requirements": [],
+  "documentation": "https://github.com/Dwaynet86/wunderground/",
+  "codeowners": [
+    "@dtruex86"
+  ]
+}
