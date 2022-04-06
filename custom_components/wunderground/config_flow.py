@@ -12,8 +12,8 @@ from homeassistant.helpers.entity_registry import (
     async_get_registry,
 )
 import voluptuous as vol
-
-AUTH_SCHEMA = vol.Schema(
+#{AUTH_SCHEMA = vol.Schema(
+PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     {
         vol.Required(CONF_API_KEY): cv.string, 
         vol.Required(CONF_PWS_ID): cv.string,
