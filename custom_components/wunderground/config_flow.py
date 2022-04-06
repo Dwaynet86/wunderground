@@ -43,10 +43,11 @@ class wuCongfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             step_id="user",
             data_schema=vol.Schema(
                 {vol.Required(CONF_API_KEY, default=stored_api_key): str},
-                {vol.Required(CONF_PWS_ID, default=stored_pws_id): str}
+                {vol.Required(CONF_PWS_ID, default=stored_pws_id): str},
             ),
             errors=errors,
         )
+        
         config = {
            CONF_API_KEY: self._wunderground.api_key,
            CONF_PWS_ID: self._wunderground.pws_id,
