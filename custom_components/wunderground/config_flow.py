@@ -38,9 +38,9 @@ class WuFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             if DATA_WU_CONFIG in self.hass.data
             else ""
         )
-        #if user_input is not None:
+        if user_input is not None:
             # Use the user-supplied API key and station id.
-            
+            return async_setup_entry()
 
        
         return self.async_show_form(
