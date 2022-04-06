@@ -33,12 +33,12 @@ class FlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         stored_api_key = (
             self.hass.data[DATA_WU_CONFIG].get(CONF_API_KEY)
             if DATA_WU_CONFIG in self.hass.data
-            else ""
+            else "8efd12ae23f04ab6bd12ae23f0dab66a"
         )
         stored_pws_id = (
             self.hass.data[DATA_WU_CONFIG].get(CONF_PWS_ID)
             if DATA_WU_CONFIG in self.hass.data
-            else ""
+            else "KILZION27"
         )
         if user_input is not None:
             # Use the user-supplied API key and station id.
