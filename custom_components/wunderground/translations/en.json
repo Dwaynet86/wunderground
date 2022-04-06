@@ -1,0 +1,18 @@
+{
+  "config": {
+    "error": {
+      "auth": "The api provided is not valid.",
+      "invalid_id": "The PWS ID provided is not valid."
+    },
+    "step": {
+      "user": {
+        "data": {
+          "api_key": "WUnderground API Key",
+          "pws_id": "WUnderground Station Id"
+        },
+        "description": "Enter your WUnderground credentials.",
+        "title": "Authentication"
+      }      
+    }
+  }
+}
