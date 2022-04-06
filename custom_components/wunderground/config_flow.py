@@ -30,10 +30,14 @@ class wuConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         """Handle a flow initiated by the user."""
         errors: Dict[str, str] = {}
         if user_input is not None:
-                if not errors:
+            #try:
+                #await validate_auth(user_input[CONF_ACCESS_TOKEN], self.hass)
+            #except ValueError:
+                #errors["base"] = "auth"   
+             if not errors:
                 # Input is valid, set data.
                 self.data = user_input
-                return await self.async_create_entry(title="WUnderground PWS", data=self.data)
+                return self.async_create_entry(title="WUnderground PWS", data=self.data)
 
         return self.async_show_form(
             step_id="user", data_schema=AUTH_SCHEMA, errors=errors
