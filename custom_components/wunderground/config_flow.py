@@ -4,8 +4,8 @@
 import voluptuous as vol
 from homeassistant import config_entries, core, exceptions
 from homeassistant.core import callback
-from .const import _LOGGER, DATA_WU_CONFIG, DOMAIN
-from homeassistant.const import CONF_API_KEY, CONF_PWS_ID
+from .const import _LOGGER, DATA_WU_CONFIG, DOMAIN, CONF_PWS_ID
+from homeassistant.const import CONF_API_KEY
 from typing import Any, Dict, Optional
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity_registry import (
