@@ -18,6 +18,9 @@ from homeassistant.components.weather import (
 from homeassistant.const import Platform
 
 _LOGGER = logging.getLogger(__package__)
+_RESOURCECURRENT = 'https://api.weather.com/v2/pws/observations/current?stationId={}&format=json&units={}&apiKey={}'
+_RESOURCEFORECAST = 'https://api.weather.com/v3/wx/forecast/daily/5day?geocode={},{}&units={}&{}&format=json&apiKey={}'
+
 
 CONF_ATTRIBUTION = "Data provided by the WUnderground weather s
 CONF_LANG = "lang"
