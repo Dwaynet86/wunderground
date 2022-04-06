@@ -4,7 +4,7 @@ from typing import Any, Dict, Optional
 
 from homeassistant import config_entries, core, exceptions
 from homeassistant.core import callback
-from .const import _LOGGER, DATA_WU_CONFIG, DOMAIN, CONF_PWS_ID, CONF_LANG
+from .const import _LOGGER, DATA_WU_CONFIG, DOMAIN, CONF_PWS_ID, CONF_LANG, DEFAULT_LANG, LANG_CODES
 from homeassistant.const import CONF_API_KEY, CONF_NAME
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity_registry import (
@@ -17,7 +17,7 @@ AUTH_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_API_KEY): cv.string, 
         vol.Required(CONF_PWS_ID): cv.string,
-        vol.Optional(CONF_LANG, default="en"): cv.string
+        vol.Optional(CONF_LANG, default==DEFAULT_LANG): vol.All(vol.In(LANG_CODES))
     }
 )
 
