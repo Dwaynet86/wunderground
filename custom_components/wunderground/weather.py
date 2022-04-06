@@ -36,6 +36,31 @@ async def async_setup_entry(
     data = hass.data[DOMAIN]
     dev = []
     index = 1
+    if hass.config.units.is_metric:
+        unit_system_api = 'm'
+        unit_system = 'metric'
+    else:
+        unit_system_api = 'e'
+        unit_system = 'imperial'
+
+    rest = WUndergroundData(
+        hass, config.get(CONF_API_KEY), pws_id, numeric_precision, unit_system_api, unit_system,
+        config.get(CONF_LANG))
+
+    if pws_id is None:
+        raise ValueError('NO PWS ID Set')
+    else:
+        # Manually specified weather station, use that for unique_id
+        unique_id_base = pws_id
+    sensors = []
+    for variable in config[CONF_MONITORED_CONDITIONS]:
+        sensors.append(WUndergroundSensor(hass, rest, variable,
+                                          unique_id_base))
+
+    await rest.async_update()
+    if not rest.data:
+        raise PlatformNotReady
+
     dev.append( WUndergroundWeather(data, "SkyWeather", index))
     async_add_entities(dev, True)
 
