@@ -31,9 +31,6 @@ DEFAULT_LANG = 'en-US'
 DOMAIN = "wunderground"
 
 PLATFORMS = [
-    Platform.BINARY_SENSOR,
-    Platform.CLIMATE,
-    Platform.HUMIDIFIER,
     Platform.SENSOR,
     Platform.WEATHER,
 ]
