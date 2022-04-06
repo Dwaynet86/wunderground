@@ -1,2 +1,2 @@
 # wunderground
-wunderground home assistant intergration
+wunderground home assistant integration
