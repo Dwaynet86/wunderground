@@ -32,7 +32,7 @@ class WuFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             else ""
         )
 
-        if user_input is not None:
+        #if user_input is not None:
             # Use the user-supplied API key
             #self._ecobee = Ecobee(config={ECOBEE_API_KEY: user_input[CONF_API_KEY]})
 
