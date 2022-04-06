@@ -17,7 +17,7 @@ AUTH_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_API_KEY): cv.string, 
         vol.Required(CONF_PWS_ID): cv.string,
-        vol.optional(CONF_LANG, default="en"): cv.string
+        vol.Optional(CONF_LANG, default="en"): cv.string
     }
 )
 
