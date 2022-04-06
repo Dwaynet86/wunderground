@@ -12,11 +12,13 @@ from .const import ( _LOGGER, DOMAIN, DATA_WU_CONFIG,
                     CONF_PWS_ID, CONF_LANG, DEFAULT_LANG, LANG_CODES)
 
 
-class WuFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
+class FlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle config flow."""
 
     VERSION = 1
 
+   
+      
     def __init__(self):
         """Initialize the flow."""
         self._wu = None
@@ -41,7 +43,7 @@ class WuFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             # Use the user-supplied API key and station id.
             self.data = user_input
-            return self.async_create_entry(title=CONF_PWS_ID, data=self.data)
+            return self.async_create_entry(title=self.data[CONF_PWS_ID], data=self.data)
 
        
         return self.async_show_form(
