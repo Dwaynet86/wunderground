@@ -176,10 +176,6 @@ class WUndergroundWeather(WeatherEntity):
 
         
 
-    async def rest.async_update(self):
-       if not rest.data:
-        raise PlatformNotReady 
-    
     
 
 
