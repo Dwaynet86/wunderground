@@ -36,7 +36,7 @@ async def async_setup_entry(
     data = hass.data[DOMAIN]
     dev = []
     index = 1
-    dev.append( WUndergroundWeather(data, data[CONF_PWS_ID], index))
+    dev.append( WUndergroundWeather(data, self.data[CONF_PWS_ID], index))
     async_add_entities(dev, True)
 
 
