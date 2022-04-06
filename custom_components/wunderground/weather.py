@@ -149,19 +149,7 @@ class WUndergroundWeather(WeatherEntity):
         if "forecasts" not in self.weather:
             return None
 
-        forecasts = []
-        date = dt_util.utcnow()
-        for day in range(0, 5):
-            forecast = _process_forecast(self.weather["forecasts"][day])
-            if forecast is None:
-                continue
-            forecast[ATTR_FORECAST_TIME] = date.isoformat()
-            date += timedelta(days=1)
-            forecasts.append(forecast)
-
-        if forecasts:
-            return forecasts
-        return None
+        
 
     async def async_update(self):
         """Get the latest weather data."""
