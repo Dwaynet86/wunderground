@@ -22,7 +22,7 @@ _RESOURCECURRENT = 'https://api.weather.com/v2/pws/observations/current?stationI
 _RESOURCEFORECAST = 'https://api.weather.com/v3/wx/forecast/daily/5day?geocode={},{}&units={}&{}&format=json&apiKey={}'
 
 
-CONF_ATTRIBUTION = "Data provided by the WUnderground weather s
+CONF_ATTRIBUTION = "Data provided by the WUnderground weather service"
 CONF_LANG = "lang"
 CONF_NUMERIC_PRECISION = 'numeric_precision'
 CONF_PWS_ID = "pws_id"
