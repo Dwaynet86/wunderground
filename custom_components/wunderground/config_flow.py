@@ -4,7 +4,8 @@ from typing import Any, Dict, Optional
 
 from homeassistant import config_entries, core, exceptions
 from homeassistant.core import callback
-from .const import _LOGGER, DATA_WU_CONFIG, DOMAIN, CONF_PWS_ID, CONF_LANG, DEFAULT_LANG, LANG_CODES
+#from .const import _LOGGER, DATA_WU_CONFIG, DOMAIN, CONF_PWS_ID, CONF_LANG, DEFAULT_LANG, LANG_CODES
+import .const
 from homeassistant.const import CONF_API_KEY, CONF_NAME
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity_registry import (
@@ -12,8 +13,8 @@ from homeassistant.helpers.entity_registry import (
     async_get_registry,
 )
 import voluptuous as vol
-#{AUTH_SCHEMA = vol.Schema(
-PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
+
+AUTH_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_API_KEY): cv.string, 
         vol.Required(CONF_PWS_ID): cv.string,
