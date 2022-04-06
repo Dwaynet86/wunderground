@@ -151,9 +151,11 @@ class WUndergroundWeather(WeatherEntity):
 
         
 
-    async def async_update(self):
-        """Get the latest weather data."""
-        await self.data.update()
-        #self.weather = thermostat.get("weather")
+    async def rest.async_update(self):
+       if not rest.data:
+        raise PlatformNotReady 
+    
+    
+
 
 
