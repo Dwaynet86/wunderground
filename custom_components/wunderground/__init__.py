@@ -18,7 +18,7 @@ from homeassistant.const import (
     PERCENTAGE, PRESSURE_INHG, PRESSURE_MBAR, PRECIPITATION_INCHES_PER_HOUR, PRECIPITATION_MILLIMETERS_PER_HOUR,
     ATTR_ATTRIBUTION)
 from  .const import (_LOGGER, _RESOURCECURRENT, _RESOURCEFORECAST,
-    DOMAIN, PLATFORMS, CONF_WU_CONFIG)
+    DOMAIN, PLATFORMS, DATA_WU_CONFIG)
 from homeassistant.exceptions import PlatformNotReady
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
