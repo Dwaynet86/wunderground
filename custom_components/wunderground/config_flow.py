@@ -5,53 +5,38 @@ import voluptuous as vol
 from homeassistant import config_entries, core, exceptions
 from homeassistant.core import callback
 from .const import _LOGGER, DATA_WU_CONFIG, DOMAIN
+from typing import Any, Dict, Optional
+import homeassistant.helpers.config_validation as cv
+from homeassistant.helpers.entity_registry import (
+    async_entries_for_config_entry,
+    async_get_registry,
+)
+
+AUTH_SCHEMA = vol.Schema(
+    {vol.Required(CONF_API_KEY): cv.string, vol.Required(CONF_PWS_ID): cv.string}
+)
 
 class wuConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Config flow for the Wunderground pws intergration"""
     VERSION = 1
-    
+    CONNECTION_CLASS = config_entries.CONN_CLASS_LOCAL_PUSH
     def __init__(self):
         """Initialize the wunderground flow."""
         self._wunderground = None
     
-    async def async_step_user(self, user_input=None):
+    data: Optional[Dict[str, Any]]
+    
+    async def async_step_user(self, user_input: Optional[Dict[str, Any]] = None):
         """Handle a flow initiated by the user."""
-        if self._async_current_entries():
-            # Config entry already exists, only one allowed.
-            return self.async_abort(reason="single_instance_allowed")
-
-        errors = {}
-        stored_api_key = (
-            self.hass.data[DATA_WU_CONFIG].get(CONF_API_KEY)
-            if DATA_WU_CONFIG in self.hass.data
-            else ""
-        )
-        stored_pws_id = (
-            self.hass.data[DATA_WU_CONFIG].get(CONF_PWS_ID)
-            if DATA_WU_CONFIG in self.hass.data
-            else ""
-        )
-
+        errors: Dict[str, str] = {}
         if user_input is not None:
-            # Use the user-supplied API key
-            self._wunderground = Wunderground(config={WU_API_KEY: user_input[CONF_API_KEY]})
-            self._wunderground = Wunderground(config={WU_PWS_ID: user_input[CONF_PWS_ID]})
-            
-            errors["base"] = "failed"
+                if not errors:
+                # Input is valid, set data.
+                self.data = user_input
+                return await self.async_create_entry(title="WUnderground PWS", data=self.data)
 
         return self.async_show_form(
-            step_id="user",
-            data_schema=vol.Schema(
-                {vol.Required(CONF_API_KEY, default=stored_api_key): str},
-                {vol.Required(CONF_PWS_ID, default=stored_pws_id): str},
-            ),
-            errors=errors,
-        )
-        
-        config = {
-           CONF_API_KEY: self._wunderground.api_key,
-           CONF_PWS_ID: self._wunderground.pws_id,
-                }
-        return self.async_create_entry(title=DOMAIN, data=config)
-    
+            step_id="user", data_schema=AUTH_SCHEMA, errors=errors
+        )           
 
+        
