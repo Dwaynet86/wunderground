@@ -6,7 +6,7 @@ from homeassistant import config_entries, core, exceptions
 from homeassistant.core import callback
 from .const import _LOGGER, DATA_WU_CONFIG, DOMAIN
 
-class wuCongfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+class wuConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Config flow for the Wunderground pws intergration"""
     VERSION = 1
     
