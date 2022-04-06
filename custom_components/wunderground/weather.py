@@ -43,7 +43,7 @@ async def async_setup_entry(
         unit_system_api = 'e'
         unit_system = 'imperial'
 
-    rest = self.WUndergroundData(
+    rest = WUndergroundData(
         hass, config.get(CONF_API_KEY), pws_id, numeric_precision, unit_system_api, unit_system,
         config.get(CONF_LANG))
 
