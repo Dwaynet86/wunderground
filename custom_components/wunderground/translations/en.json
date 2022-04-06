@@ -9,6 +9,7 @@
         "data": {
           "api_key": "API Key",
           "pws_id": "Station Id",
+          "lang": "Language",
           "monitored_conditions:": "Conditions to monitor"
         },
         "description": "Enter your Wunderground credentials.",
