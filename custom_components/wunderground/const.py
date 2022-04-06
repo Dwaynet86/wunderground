@@ -19,11 +19,13 @@ from homeassistant.const import Platform
 
 _LOGGER = logging.getLogger(__package__)
 
-DOMAIN = "wunderground"
-DATA_WU_CONFIG = "wunderground_config"
+CONF_ATTRIBUTION = "Data provided by the WUnderground weather s
 CONF_LANG = "lang"
+CONF_NUMERIC_PRECISION = 'numeric_precision'
 CONF_PWS_ID = "pws_id"
+DATA_WU_CONFIG = "wunderground_config"
 DEFAULT_LANG = 'en-US'
+DOMAIN = "wunderground"
 
 PLATFORMS = [
     Platform.BINARY_SENSOR,
