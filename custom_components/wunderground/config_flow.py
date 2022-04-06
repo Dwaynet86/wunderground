@@ -5,7 +5,7 @@ from typing import Any, Dict, Optional
 from homeassistant import config_entries, core, exceptions
 from homeassistant.core import callback
 from .const import _LOGGER, DATA_WU_CONFIG, DOMAIN, CONF_PWS_ID
-from homeassistant.const import CONF_API_KEY, CONF_NAME
+from homeassistant.const import CONF_API_KEY, CONF_NAME, CONF_LANG
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity_registry import (
     async_entries_for_config_entry,
@@ -14,7 +14,11 @@ from homeassistant.helpers.entity_registry import (
 import voluptuous as vol
 
 AUTH_SCHEMA = vol.Schema(
-    {vol.Required(CONF_API_KEY): cv.string, vol.Required(CONF_PWS_ID): cv.string}
+    {
+        vol.Required(CONF_API_KEY): cv.string, 
+        vol.Required(CONF_PWS_ID): cv.string,
+        vol.optional(CONF_LANG, default="en"): cv.string
+    }
 )
 
 class wuConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
