@@ -33,6 +33,14 @@ class WuFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             if DATA_WU_CONFIG in self.hass.data
             else ""
         )
+        stored_pws_id = (
+            self.hass.data[DATA_WU_CONFIG].get(CONF_PWS_ID)
+            if DATA_WU_CONFIG in self.hass.data
+            else ""
+        )
+        #if user_input is not None:
+            # Use the user-supplied API key and station id.
+            
 
        
         return self.async_show_form(
@@ -40,7 +48,7 @@ class WuFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             data_schema=vol.Schema(
                 {
                     vol.Required(CONF_API_KEY, default=stored_api_key): str,
-                    vol.Required(CONF_PWS_ID): cv.string,
+                    vol.Required(CONF_PWS_ID, default=stored_pws_id): cv.string,
                     vol.Optional(CONF_LANG, default=DEFAULT_LANG): vol.All(vol.In(LANG_CODES))
                 }
             ),
