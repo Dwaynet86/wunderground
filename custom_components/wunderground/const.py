@@ -220,3 +220,4 @@ WEATHER_SYMBOL_TO_HASS = {
     20: "hazy",
     21: "hazy",
     -2: None,
+}
