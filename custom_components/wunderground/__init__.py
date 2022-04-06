@@ -7,7 +7,7 @@ import re
 import aiohttp
 import async_timeout
 import voluptuous as vol
-from homeassistant.core import HomeAssistant
+#from homeassistant.core import HomeAssistant
 from homeassistant.helpers.typing import HomeAssistantType, ConfigType
 from homeassistant.components import sensor
 from homeassistant.components.sensor import PLATFORM_SCHEMA
@@ -108,9 +108,9 @@ class WUndergroundData:
         except (asyncio.TimeoutError, aiohttp.ClientError) as err:
             _LOGGER.error("Error fetching WUnderground data: %s", repr(err))
 
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Unload the config entry and platforms."""
+"""async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+    #Unload the config entry and platforms.
     unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     if unload_ok:
         hass.data.pop(DOMAIN)
-    return unload_ok
+    return unload_ok"""
