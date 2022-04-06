@@ -1,4 +1,4 @@
-"""Support for displaying weather info from Ecobee API."""
+"""Support for displaying weather info from Wunderground API."""
 from __future__ import annotations
 
 from datetime import timedelta
@@ -17,16 +17,13 @@ from homeassistant.components.weather import (
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import PRESSURE_HPA, PRESSURE_INHG, TEMP_FAHRENHEIT
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers.entity import DeviceInfo
+
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.util import dt as dt_util
 from homeassistant.util.pressure import convert as pressure_convert
 
 from .const import (
     DOMAIN,
-    ECOBEE_MODEL_TO_NAME,
-    ECOBEE_WEATHER_SYMBOL_TO_HASS,
-    MANUFACTURER,
 )
 
 
@@ -35,22 +32,22 @@ async def async_setup_entry(
     config_entry: ConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
-    """Set up the ecobee weather platform."""
+    """Set up the WUnderground weather platform."""
     data = hass.data[DOMAIN]
     dev = []
-    for index in range(len(data.ecobee.thermostats)):
-        thermostat = data.ecobee.get_thermostat(index)
-        if "weather" in thermostat:
-            dev.append(EcobeeWeather(data, thermostat["name"], index))
+    #for index in range(len(data.ecobee.thermostats)):
+        #thermostat = data.ecobee.get_thermostat(index)
+        #if "weather" in thermostat:
+            #dev.append(EcobeeWeather(data, thermostat["name"], index))
 
     async_add_entities(dev, True)
 
 
-class EcobeeWeather(WeatherEntity):
-    """Representation of Ecobee weather data."""
+class WUndergroundWeather(WeatherEntity):
+    """Representation of WUnderground weather data."""
 
     def __init__(self, data, name, index):
-        """Initialize the Ecobee weather platform."""
+        """Initialize the WUnderground weather platform."""
         self.data = data
         self._name = name
         self._index = index
@@ -72,12 +69,12 @@ class EcobeeWeather(WeatherEntity):
     @property
     def unique_id(self):
         """Return a unique identifier for the weather platform."""
-        return self.data.ecobee.get_thermostat(self._index)["identifier"]
+        return self.data.WUnderground.get_thermostat(self._index)["identifier"]
 
     @property
     def device_info(self) -> DeviceInfo:
         """Return device information for the ecobee weather platform."""
-        thermostat = self.data.ecobee.get_thermostat(self._index)
+        thermostat = self.data.WUnderground.get_thermostat(self._index)
         model: str | None
         try:
             model = f"{ECOBEE_MODEL_TO_NAME[thermostat['modelNumber']]} Thermostat"
