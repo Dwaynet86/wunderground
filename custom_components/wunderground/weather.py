@@ -35,11 +35,8 @@ async def async_setup_entry(
     """Set up the WUnderground weather platform."""
     data = hass.data[DOMAIN]
     dev = []
-    #for index in range(len(data.ecobee.thermostats)):
-        #thermostat = data.ecobee.get_thermostat(index)
-        #if "weather" in thermostat:
-            #dev.append(EcobeeWeather(data, thermostat["name"], index))
-
+    index = 1
+    dev.append( WUndergroundWeather(data, data[CONF_PWS_ID], index))
     async_add_entities(dev, True)
 
 
@@ -69,31 +66,13 @@ class WUndergroundWeather(WeatherEntity):
     @property
     def unique_id(self):
         """Return a unique identifier for the weather platform."""
-        return self.data.WUnderground.get_thermostat(self._index)["identifier"]
-
-    @property
-    def device_info(self) -> DeviceInfo:
-        """Return device information for the ecobee weather platform."""
-        thermostat = self.data.WUnderground.get_thermostat(self._index)
-        model: str | None
-        try:
-            model = f"{ECOBEE_MODEL_TO_NAME[thermostat['modelNumber']]} Thermostat"
-        except KeyError:
-            # Ecobee model is not in our list
-            model = None
-
-        return DeviceInfo(
-            identifiers={(DOMAIN, thermostat["identifier"])},
-            manufacturer=MANUFACTURER,
-            model=model,
-            name=self.name,
-        )
+        return "unique2222"
 
     @property
     def condition(self):
         """Return the current condition."""
         try:
-            return ECOBEE_WEATHER_SYMBOL_TO_HASS[self.get_forecast(0, "weatherSymbol")]
+            return WEATHER_SYMBOL_TO_HASS[self.get_forecast(0, "weatherSymbol")]
         except ValueError:
             return None
 
@@ -187,29 +166,6 @@ class WUndergroundWeather(WeatherEntity):
     async def async_update(self):
         """Get the latest weather data."""
         await self.data.update()
-        thermostat = self.data.ecobee.get_thermostat(self._index)
-        self.weather = thermostat.get("weather")
+        #self.weather = thermostat.get("weather")
 
 
-def _process_forecast(json):
-    """Process a single ecobee API forecast to return expected values."""
-    forecast = {}
-    try:
-        forecast[ATTR_FORECAST_CONDITION] = ECOBEE_WEATHER_SYMBOL_TO_HASS[
-            json["weatherSymbol"]
-        ]
-        if json["tempHigh"] != ECOBEE_STATE_UNKNOWN:
-            forecast[ATTR_FORECAST_TEMP] = float(json["tempHigh"]) / 10
-        if json["tempLow"] != ECOBEE_STATE_UNKNOWN:
-            forecast[ATTR_FORECAST_TEMP_LOW] = float(json["tempLow"]) / 10
-        if json["windBearing"] != ECOBEE_STATE_UNKNOWN:
-            forecast[ATTR_FORECAST_WIND_BEARING] = int(json["windBearing"])
-        if json["windSpeed"] != ECOBEE_STATE_UNKNOWN:
-            forecast[ATTR_FORECAST_WIND_SPEED] = int(json["windSpeed"])
-
-    except (ValueError, IndexError, KeyError):
-        return None
-
-    if forecast:
-        return forecast
-    return None
