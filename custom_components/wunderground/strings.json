@@ -10,7 +10,7 @@
           "api_key": "WUnderground API Key",
           "pws_id": "WUnderground Station Id"
         },
-        "description": "Enter your WUnderground credentials.",
+        "description": "Enter your WUndergood credentials.",
         "title": "Authentication"
       }      
     }
