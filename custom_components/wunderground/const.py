@@ -20,7 +20,7 @@ from homeassistant.const import Platform
 _LOGGER = logging.getLogger(__package__)
 
 DOMAIN = "wunderground"
-DATA_WUNDERGROUND_CONFIG = "wunderground_config"
+DATA_WU_CONFIG = "wunderground_config"
 
 CONF_INDEX = "index"
 CONF_REFRESH_TOKEN = "refresh_token"
