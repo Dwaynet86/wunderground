@@ -1,17 +1,17 @@
 """Config flow for Wunderground PWS Intergration."""
 
+from typing import Any, Dict, Optional
 
-import voluptuous as vol
 from homeassistant import config_entries, core, exceptions
 from homeassistant.core import callback
 from .const import _LOGGER, DATA_WU_CONFIG, DOMAIN, CONF_PWS_ID
 from homeassistant.const import CONF_API_KEY
-from typing import Any, Dict, Optional
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity_registry import (
     async_entries_for_config_entry,
     async_get_registry,
 )
+import voluptuous as vol
 
 AUTH_SCHEMA = vol.Schema(
     {vol.Required(CONF_API_KEY): cv.string, vol.Required(CONF_PWS_ID): cv.string}
