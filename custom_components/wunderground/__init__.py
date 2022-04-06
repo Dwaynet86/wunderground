@@ -31,3 +31,15 @@ CONF_ATTRIBUTION = "Data provided by the WUnderground weather service"
 CONF_PWS_ID = 'pws_id'
 CONF_NUMERIC_PRECISION = 'numeric_precision'
 CONF_LANG = 'lang'
+
+
+
+MIN_TIME_BETWEEN_UPDATES = timedelta(minutes=5)
+
+TEMPUNIT = 0
+LENGTHUNIT = 1
+ALTITUDEUNIT = 2
+SPEEDUNIT = 3
+PRESSUREUNIT = 4
+RATE = 5
+PERCENTAGEUNIT = 6
