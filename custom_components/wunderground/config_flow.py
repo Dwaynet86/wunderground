@@ -7,7 +7,8 @@ from homeassistant.const import CONF_API_KEY
 from homeassistant.exceptions import HomeAssistantError
 from homeassistant.util.json import load_json
 
-from .const import _LOGGER, DOMAIN, DATA_WU_CONFIG
+from .const import ( _LOGGER, DOMAIN, DATA_WU_CONFIG,
+                    CONF_PWS_ID, CONF_LANG, DEFAULT_LANG, LANG_CODES)
 
 
 class WuFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
@@ -44,7 +45,11 @@ class WuFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
-                {vol.Required(CONF_API_KEY, default=stored_api_key): str}
+                {
+                    vol.Required(CONF_API_KEY, default=stored_api_key): str,
+                    vol.Required(CONF_PWS_ID): cv.string,
+                    vol.Optional(CONF_LANG, default=DEFAULT_LANG): vol.All(vol.In(LANG_CODES))
+                }
             ),
             errors=errors,
         )
