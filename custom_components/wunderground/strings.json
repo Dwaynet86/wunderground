@@ -7,8 +7,10 @@
     "step": {
       "user": {
         "data": {
-          "api_key": "WUnderground API Key",
-          "pws_id": "WUnderground Station Id"
+          "api_key": "API Key",
+          "pws_id": "Station Id",
+          "lang": "Language",
+          "monitored_conditions:": "Conditions to monitor"
         },
         "description": "Enter your WUndergood credentials.",
         "title": "Authentication"
