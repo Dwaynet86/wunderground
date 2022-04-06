@@ -7,7 +7,7 @@ import re
 import aiohttp
 import async_timeout
 import voluptuous as vol
-
+from homeassistant.core import HomeAssistant
 from homeassistant.helpers.typing import HomeAssistantType, ConfigType
 from homeassistant.components import sensor
 from homeassistant.components.sensor import PLATFORM_SCHEMA
