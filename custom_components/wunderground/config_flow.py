@@ -6,6 +6,7 @@ from homeassistant import config_entries
 from homeassistant.const import CONF_API_KEY
 from homeassistant.exceptions import HomeAssistantError
 from homeassistant.util.json import load_json
+import homeassistant.helpers.config_validation as cv
 
 from .const import ( _LOGGER, DOMAIN, DATA_WU_CONFIG,
                     CONF_PWS_ID, CONF_LANG, DEFAULT_LANG, LANG_CODES)
