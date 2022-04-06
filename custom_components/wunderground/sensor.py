@@ -3,7 +3,7 @@ Support for WUndergroundPWS weather service.
 For more details about this platform, please refer to the documentation at
 https://github.com/Dwaynet86/wunderground/
 """
-import asyncio
+
 from datetime import timedelta
 import logging
 import re
