@@ -34,15 +34,7 @@ class WuFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             else ""
         )
 
-        #if user_input is not None:
-            # Use the user-supplied API key
-            #self._ecobee = Ecobee(config={ECOBEE_API_KEY: user_input[CONF_API_KEY]})
-
-            #if await self.hass.async_add_executor_job(self._ecobee.request_pin):
-                # We have a PIN; move to the next step of the flow.
-                #return await self.async_step_authorize()
-            #errors["base"] = "pin_request_failed"
-
+       
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
