@@ -40,7 +40,8 @@ class WuFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         )
         if user_input is not None:
             # Use the user-supplied API key and station id.
-            return self.async_setup_entry()
+            self.data = user_input
+            return self.async_create_entry(title="WUnderground PWS", data=self.data)
 
        
         return self.async_show_form(
