@@ -38,7 +38,7 @@ RATE = 5
 PERCENTAGEUNIT = 6
 
 
- class WUndergroundData:
+class WUndergroundData:
     """Get data from WUnderground."""
 
     def __init__(self, hass, api_key, pws_id, numeric_precision, unit_system_api, unit_system, lang):
