@@ -1,6 +1,6 @@
 """Support for displaying weather info from Wunderground API."""
 from __future__ import annotations
-
+from .data import WUndergroundData
 from datetime import timedelta
 
 from pyecobee.const import ECOBEE_STATE_UNKNOWN
