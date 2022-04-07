@@ -1,7 +1,7 @@
 """ shared data """
 from homeassistant.util import Throttle
 
-
+MIN_TIME_BETWEEN_UPDATES = timedelta(minutes=5)
 class WUndergroundData:
     """Get data from WUnderground."""
 
