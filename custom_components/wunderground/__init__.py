@@ -1,7 +1,5 @@
 """The wunderground pws component."""
 import asyncio
-from datetime import timedelta
-
 import re
 
 import aiohttp
