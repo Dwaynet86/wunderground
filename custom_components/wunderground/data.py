@@ -1,3 +1,7 @@
+""" shared data """
+from homeassistant.util import Throttle
+
+
 class WUndergroundData:
     """Get data from WUnderground."""
 
