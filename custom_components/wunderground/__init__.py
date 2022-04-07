@@ -22,12 +22,12 @@ from  .const import (_LOGGER, _RESOURCECURRENT, _RESOURCEFORECAST,
 from homeassistant.exceptions import PlatformNotReady
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
-from homeassistant.util import Throttle
+
 import homeassistant.helpers.config_validation as cv
 
 
 
-MIN_TIME_BETWEEN_UPDATES = timedelta(minutes=5)
+
 
 TEMPUNIT = 0
 LENGTHUNIT = 1
