@@ -23,7 +23,7 @@ from homeassistant.util import dt as dt_util
 from homeassistant.util.pressure import convert as pressure_convert
 
 from .const import (
-    DOMAIN,
+    DOMAIN, DATA_WU_CONFIG
 )
 
 
@@ -44,8 +44,8 @@ async def async_setup_entry(
         unit_system = 'imperial'
 
     rest = WUndergroundData(
-        hass, hass.config.get(CONF_API_KEY), pws_id, numeric_precision, unit_system_api, unit_system,
-        hass.config.get(CONF_LANG))
+        hass, hass.data[DATA_WU_CONFIG].get(CONF_API_KEY), pws_id, numeric_precision, unit_system_api, unit_system,
+        hass.data[DATA_WU_CONFIG].get(CONF_LANG))
 
     if pws_id is None:
         raise ValueError('NO PWS ID Set')
