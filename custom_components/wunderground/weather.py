@@ -29,14 +29,14 @@ from .const import (
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    config_entry: ConfigEntry,
+    config: ConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up the WUnderground weather platform."""
     data = hass.data[DOMAIN]
     dev = []
     index = 1
-    if hass.config.units.is_metric:
+    if config.units.is_metric:
         unit_system_api = 'm'
         unit_system = 'metric'
     else:
@@ -44,8 +44,8 @@ async def async_setup_entry(
         unit_system = 'imperial'
 
     rest = WUndergroundData(
-        hass, hass.data[DATA_WU_CONFIG].get(CONF_API_KEY), pws_id, numeric_precision, unit_system_api, unit_system,
-        hass.data[DATA_WU_CONFIG].get(CONF_LANG))
+        hass, config.get(CONF_API_KEY), pws_id, numeric_precision, unit_system_api, unit_system,
+        config.get(CONF_LANG))
 
     if pws_id is None:
         raise ValueError('NO PWS ID Set')
