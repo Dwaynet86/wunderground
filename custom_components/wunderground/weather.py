@@ -14,7 +14,7 @@ from homeassistant.components.weather import (
     ATTR_FORECAST_WIND_SPEED,
     WeatherEntity,
 )
-from homeassistant.config_entries import ConfigEntry
+#from homeassistant.config_entries import ConfigEntry
 from homeassistant.helpers.typing import ConfigType
 from homeassistant.const import PRESSURE_HPA, PRESSURE_INHG, TEMP_FAHRENHEIT
 from homeassistant.core import HomeAssistant
