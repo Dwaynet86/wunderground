@@ -15,6 +15,7 @@ from homeassistant.components.weather import (
     WeatherEntity,
 )
 from homeassistant.config_entries import ConfigEntry
+from homeassistant.helpers.typing import ConfigType
 from homeassistant.const import PRESSURE_HPA, PRESSURE_INHG, TEMP_FAHRENHEIT
 from homeassistant.core import HomeAssistant
 
@@ -29,7 +30,7 @@ from .const import (
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    config: ConfigEntry,
+    config: ConfigType,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up the WUnderground weather platform."""
