@@ -17,13 +17,7 @@ class FlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
     VERSION = 1
 
-   
-      
-    def __init__(self):
-        """Initialize the flow."""
-        self._wu = None
-
-    async def async_step_user(self, user_input=None):
+    async def async_step_user(self, user_input: dict[str, Any] | None = None) -> FlowResult:
         """Handle a flow initiated by the user."""
         if self._async_current_entries():
             # Config entry already exists, only one allowed.
